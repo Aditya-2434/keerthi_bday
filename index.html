@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Sacramento&family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Dancing+Script&family=Great+Vibes&display=swap" rel="stylesheet">
+
+
+    <style>
+        
+        .head{
+           background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 250px;
+            width: 70%; 
+            border-radius: 5px;
+        }
+
+        .tagline{
+            font-size: 20px;
+            font-family: arial;
+            color: rgb(192, 79, 126);
+        }
+
+        .images{
+            width: 200px;
+            height: 400px;
+            object-fit: cover;
+            object-position: 40%;
+        }
+        .photo_slider {
+            display: flex;
+            flex-direction: row;
+            width: fit-content;
+            animation: scroll 40s linear infinite;
+        }
+        .middle{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .img_container{
+            margin: 10px 5px 5px 5px;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .slide:nth-child(odd){
+            transform: rotate(5deg);
+        }
+        .taskbar{
+            background-color: rgb(255, 255, 210);
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 55px;
+            position: fixed;
+            z-index: 100;
+            font-family: sans-serif;
+        }
+        .task_elements:hover{
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: bold;
+            
+        }
+        .sliderr{
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            margin-top: 5px;
+            padding: 20px;
+        }
+        .slide{
+            height: 250px;
+            margin: 0 10px;
+            transition: transform 0.5s ease;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+        body{
+            margin: 0px 0px 0px 0px;
+            padding-bottom: 25px;
+        }
+        .testimonial-container {
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+            margin: auto;
+            overflow: hidden;
+            background-color: #fee9d7;
+            border-radius: 12px;
+            padding: 30px 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            font-family: 'Segoe UI', sans-serif;
+            margin-top: 15px;
+        }
+
+        .testimonial-slider {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        }
+
+        .testimonial {
+        min-width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 22px;
+        line-height: 1.6;
+        padding: 10px 10px 0px 10px;
+        
+        }
+
+        .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: transparent;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #333;
+        padding: 10px;
+        }
+
+        .arrow.left {
+        left: 10px;
+        }
+
+        .arrow.right {
+        right: 10px;
+        }
+
+        .dots {
+        text-align: center;
+        margin-top: 15px;
+        }
+
+        .dots span {
+        display: inline-block;
+        height: 12px;
+        width: 12px;
+        margin: 0 4px;
+        background-color: #bbb;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        }
+
+        .dots .active {
+        background-color: #333;
+        }
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+        }
+        .task_img{
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 40px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <canvas id="confetti-canvas"></canvas>
+    <div class="taskbar">
+        <section style="padding: 0px 15px 0px 15px;" class="task_elements">
+            Home
+        </section>
+        <section style="padding: 0px 15px 0px 15px;"class="task_elements">
+            Memories
+        </section>
+        <div style="padding: 0px 15px 0px 15px;"class="task_elements">
+            Testimonials
+        </div>
+        <div style="position: absolute;
+        right: 15px;padding-top: 5px;"> 
+            <img src="images/sleep.jpg" class="task_img">
+        </div>
+    </div>
+    <div style="display: flex;justify-content: center;padding-top: 60px;">
+        <div class="head">
+            <div style="font-size: 45px;
+            font-family: 'Kaushan Script', cursive;
+            padding-top: 15px;">
+                Happy Birthday
+            </div>
+            <div style="font-size: 55px;
+                        font-family: 'Great Vibes', cursive;">
+                Keerthii!!
+            </div>
+            <div class="tagline">
+                You are special to all of us🩷
+            </div>
+        </div>
+    </div>
+    
+    <div class="middle">
+        <div style="display: flex; 
+        margin-top: 20px;">
+            <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                Our Memories
+            </div>
+            <div style="padding :3px 0px 0px 4px ">
+                <img src="images/camera (1).png" style="height: 20px;">
+            </div>
+        </div>
+        <div class="sliderr">
+            <div class="photo_slider" id="slider">
+                <div class="img_container">
+                    <img src="images/keerthi paapa.jpg" class="slide tilt_left images" >
+                </div>
+                <div class="img_container">
+                    <img src="images/me.jpg" class="slide tilt_left images">
+                </div>
+                
+                <div class="img_container">
+                    <img src="images/IMG-20250728-WA0039.jpg" class="slide tilt_left images">
+                </div>
+                <div  class="img_container">
+                    <img src="images/IMG-20250728-WA0035.jpg" class="slide tilt_right images">
+                </div>
+                <div class="img_container">
+                    <img src="images/IMG-20250728-WA0037.jpg" class="slide tilt_left images">
+                </div>
+                <div>
+                    <img src="images/IMG-20250728-WA0033.jpg" class="slide tilt_right images">
+                </div>
+                <div class="img_container">
+                    <img src="images/raj.jpg" class="slide tilt_left images">
+                </div>
+                <div class="img_container">
+                    <img src="images/vadla.jpg" class="slide tilt_left images">
+                </div>
+                <div  class="img_container">
+                    <img src="images/IMG-20250728-WA0044.jpg" class="slide tilt_left images">
+                </div>
+                <div class="img_container">
+                    <img src="images/IMG-20250728-WA0077.jpg" class="slide tilt_right images" style="object-position: 70%;">
+                </div>
+                <div  class="img_container">
+                    <img src="images/IMG-20250728-WA0074.jpg" class="slide tilt_left images"
+                    style="object-position: 30%;">
+                </div>
+                <div class="img_container">
+                    <img src="images/sleep.jpg" class="slide tilt_right images">
+                </div>
+                <div>
+                    <img src="images/IMG-20250728-WA0068.jpg" class="slide tilt_left images">
+                </div>
+                <div  class="img_container">
+                    <img src="images/IMG-20250728-WA0044.jpg" class="slide tilt_left images">
+                </div>
+                <div class="img_container">
+                    <img src="images/hassha anna.jpg" class="slide tilt_right images">
+                </div>
+                
+            </div> 
+            </div>
+        
+    </div>
+        <div class="testimonials" style= "display: flex;
+                                        justify-content: center;
+        ">
+            <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;" >
+                Testimonials
+            </div>
+            <div>
+               <img src="messenger.png" style="height: 20px;">
+            </div>
+        </div>
+
+        <div class="testimonial-container">
+            <div class="testimonial-slider" id="testimonial-slider"
+                 style="margin-top: 5px;
+                 margin-bottom: 0px;
+                ">
+                
+                <div class="testimonial" style="padding-left:25px ;
+                padding-right: 25px;">"She’s the kind of person who lights up a room just by walking in. smart, dedicated, and always smiling 😄. With a heart that connects with everyone and a charm you can’t ignore ✨, she naturally stands out.Despite her packed schedule and magnetic circle 😅, she stays humble and real — the meme queen 👑 with unmatched charm 🧿.She’s not just popular, she’s a phenomenon. And there’s no doubt she’s going to shape the future of flight 🫶.
+                <span style="display: block;font-weight: bold;">Keep flying high✈ we’ll always be cheering for you".</span><span style="display: block;
+                       position: relative;
+                       right: -130px;
+                       bottom: -25px;
+                       font-size: 20px;
+                       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                    ---Sowmya💜
+                </span>
+                </div>
+                 <div class="testimonial" style="padding-left:25px ;
+                padding-right: 25px;">"At first I thought why would she even speak to me😅 — and  in no time did I truly get to know what a wonderful person you are. and i truly wish we were friends in school too<span style="font-size: 16px;">(in that way i can get contacts of your friends too🤣)</span> Even though life has gotten busier and we don't get to spend as much time together, you'll always be a special friend to me😍. I do know you will fly higher and higher but if you face any difficulties in life, don't forget to call me,  I will always be with you😉"
+                <span style="display: block;
+                       position: relative;
+                       right: -130px;
+                       bottom: -25px;
+                       font-size: 20px;
+                       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"">
+                    ---Aditya🩷
+                </span>
+                </div> 
+                <div class="testimonial" style="padding-left:25px ;
+                padding-right: 25px;">"A girl who is good at everything and always has a postive energy, unintentionally funny and a hindi songs maniac <span style="display: block;font-weight: bold;">AURA FARMER!!!!!"</span>
+                <span style="display: block;
+                       position: relative;
+                       right: -130px;
+                       bottom: -25px;
+                       font-size: 20px;
+                       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"">
+                    ---Raj💛
+                </span>
+                </div>
+                <div class="testimonial" style="padding-left:25px ;
+                padding-right: 25px;"><span style="display: block;
+                                                      font-weight: bold;margin-bottom: 5px;">
+                        Heyy Keerthi!!!</span>
+                    "It’s funny how life gets busy and we all drift a little.And you drifted a little more 😁.All we’ve done lately is smile and wave from a distance. But even in that, there’s a kind of comfort… knowing you’re still there. Still you.....🫶
+                    I really hope we never become strangers.
+                    And yeahhh Thanks for always laughing at my silly jokes 
+                    Tryna luv uhhh as always....
+                    Finally ,<span style="display: block;font-weight: bold;">Happiest Birthday girlllll"</span><span style="display: block;
+                       position: relative;
+                       right: -130px;
+                       bottom: -25px;
+                       font-size: 20px;
+                       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"">
+                    ---Varsha💙
+                </span></div>
+                <div class="testimonial"  style="padding-left:25px ;
+                padding-right: 25px;">"She’s the kind of person who balances independence with warmth — always on the go, yet never too busy to share a kind word. Soft-spoken but full of energy, she lights up every space with her quiet strength and genuine heart."<span style="display: block;
+                       position: relative;
+                       right: -130px;
+                       bottom: -25px;
+                       font-size: 20px;
+                       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"">
+                    ---Harsha❤
+                </span></div>
+            </div>
+
+            <button class="arrow left" onclick="changeSlide(-1)">❮</button>
+            <button class="arrow right" onclick="changeSlide(1)">❯</button>
+
+            <div class="dots" id="dots-container"></div>
+            </div>
+    <div style="width: 100%;height: 150px;background-color: black;
+    margin: 20px 5px 0px 5px; color: white;padding: 15px 10px 0px 10px;">
+        Ekkuva time ledu bro and antha knowledge kuda ledu re lekapothe inka baaga chesevaadini🥲....Finally after 3 days of efforts(flexing😅) edo ala chesesaa neeku nacchutundhii ani aashisthuu...(okavela nacchithe chinna smile iccheyi bro😉)
+        <p>---Aditya🩷</p>
+    </div>
+    <script>
+        const track = document.querySelector('.photo_slider');
+        
+        track.addEventListener('mouseenter', () => {
+        track.style.animationPlayState = 'paused';
+        });
+
+        track.addEventListener('mouseleave', () => {
+        track.style.animationPlayState = 'running';
+        });
+
+        const sliderr = document.getElementById("slider");
+        const clone = sliderr.innerHTML; 
+        sliderr.innerHTML += clone;
+
+        const slider = document.getElementById('testimonial-slider');
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dotsContainer = document.getElementById('dots-container');
+        let currentIndex = 0;
+
+        testimonials.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll('span');
+        updateSlider();
+
+        function changeSlide(step) {
+            currentIndex = (currentIndex + step + testimonials.length) % testimonials.length;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        }
+
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const confetti = [];
+        const colors = ['#FFC0CB', '#FFD700', '#98FB98', '#ADD8E6', '#DDA0DD'];
+
+        function random(min, max) {
+        return Math.random() * (max - min) + min;
+        }
+
+        for (let i = 0; i < 150; i++) {
+        confetti.push({
+            x: random(0, canvas.width),
+            y: random(0, canvas.height),
+            r: random(2, 6),
+            d: random(0.5, 1.5),
+            color: colors[Math.floor(Math.random() * colors.length)],
+            tilt: random(-10, 10),
+            tiltAngleIncremental: random(0.01, 0.03),
+            tiltAngle: 0
+        });
+        }
+
+        function drawConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        confetti.forEach(c => {
+            ctx.beginPath();
+            ctx.lineWidth = c.r;
+            ctx.strokeStyle = c.color;
+            ctx.moveTo(c.x + c.tilt + c.r / 2, c.y);
+            ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
+            ctx.stroke();
+        });
+
+        updateConfetti();
+        requestAnimationFrame(drawConfetti);
+        }
+
+        function updateConfetti() {
+        confetti.forEach(c => {
+            c.tiltAngle += c.tiltAngleIncremental;
+            c.y += (Math.cos(c.d) + 1.5 + c.r / 8) / 8;
+            c.tilt = Math.sin(c.tiltAngle) * 10;
+
+            if (c.y > canvas.height) {
+            c.y = -10;
+            c.x = random(0, canvas.width);
+            }
+        });
+        }
+
+        drawConfetti();
+</script>
+
+    </script>
+</body>
+</html>
